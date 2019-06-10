@@ -46,3 +46,14 @@ numbers = tree(1,[tree(2,[tree(3),tree(4)]),tree(5,[tree(6,[tree(7)]),tree(8)])]
 #print(square_tree(numbers))
 #print(tree_max(t))
 #print(is_leaf(t))
+
+def acorn_finder(t):
+  def find_acorn(t, arg='acorn'):
+    if label(t) == arg:
+      return True
+    for b in branches(t):
+      path = find_acorn(b, arg)
+      if path:
+        return True
+    return False
+  return find_acorn(t,arg='acorn')
