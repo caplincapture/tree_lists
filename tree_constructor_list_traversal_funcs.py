@@ -57,3 +57,13 @@ def acorn_finder(t):
         return True
     return False
   return find_acorn(t,arg='acorn')
+
+scrat = tree('acorn')
+print(acorn_finder(scrat))
+
+sproul = tree('roots', [tree('branch1', [tree('leaf'), tree('acorn')]), tree('branch2')])
+print(acorn_finder(sproul))
+numbers = tree(1, [tree(2), tree(3, [tree(4), tree(5)]), tree(6, [tree(7)])])
+print(acorn_finder(numbers))
+t = tree(1, [tree('acorn',[tree('not acorn')])])
+print(acorn_finder(t))
