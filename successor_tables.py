@@ -63,4 +63,3 @@ def shakespeare_tokens(path="shakespeare.txt", url="http://inst.eecs.berkeley.ed
 		shakespeare = urlopen(url)
 		result = shakespeare.read().decode(encoding="ascii").split()
 	return result
-
