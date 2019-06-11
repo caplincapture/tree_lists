@@ -51,7 +51,32 @@ def largest_product_path(tree):
     else:
         paths = [label(tree) * largest_product_path(b) for b in branches(tree)]
         return max(path)        
-        
+
+# Iterative implementation
+def level_order(tree):
+    if not tree:
+        return []
+    current_level, next_level = [label(tree)], [tree]
+    while next_level:
+        find_next= []
+        for b in next_level:
+            find_next.extend(branches(b))
+        next_level = find_next
+        current_level.extend([label(t) for t in next_level])
+    return current_level
+# Recursive implementation
+
+def level_order(tree):
+    def find_next(current_level):
+        if current_level == []:
+            return []
+        else:
+            next_level = []
+            for b in current_level:
+                next_level.extend(branches(b))
+            return [label(t) for t in next_level] + find_next(next_level)
+    return [label(tree)] + find_next([tree])
+
 t = tree(2, [tree(7, [tree(3), tree(6, [tree(5), tree(11)])] ), tree(15)])
 print(find_path(t, 5))
 #print(find_path(t, 10)) # returns None
