@@ -36,6 +36,22 @@ def find_path(tree, x):
           print(path)
             return [label(tree)] + path
 
+        
+def is_min_heap(t):
+    for b in branches(t):
+        if label(t) > label(b) or not is_min_heap(b):
+            return False
+    return True
+
+def largest_product_path(tree):
+    if not tree:
+        return 0
+    elif is_leaf(tree):
+        return label(tree)
+    else:
+        paths = [label(tree) * largest_product_path(b) for b in branches(tree)]
+        return max(path)        
+        
 t = tree(2, [tree(7, [tree(3), tree(6, [tree(5), tree(11)])] ), tree(15)])
 print(find_path(t, 5))
 #print(find_path(t, 10)) # returns None
